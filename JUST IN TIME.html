@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just in Time</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+    nav {
+      background: #333;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+    .form-control {
+      margin-bottom: 1rem;
+    }
+    .form-control label {
+      display: block;
+      font-weight: bold;
+    }
+    .form-control input, .form-control textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .btn {
+      background: #4CAF50;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    .alerta-roja {
+      background-color: #ff0000;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+    .alerta-verde {
+      background-color: #00ff00;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+    .galeria-imagenes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .galeria-imagenes img {
+      width: 200px; /* ancho de la imagen */
+      height: 150px; /* altura de la imagen */
+      margin: 10px; /* margen entre imágenes */
+      border-radius: 10px; /* borde redondeado */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* sombra */
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Just in Time</h1>
+    <p>Optimización de inventarios y control de demanda</p>
+  </header>
+
+  <nav>
+    <a href="#inventarios">Control de Inventarios</a>
+    <a href="#demanda">Registro de Demanda Anual</a>
+  </nav>
+
+  <section id="inventarios" class="container">
+    <h2>Control de Inventarios</h2>
+    <p>Consulta y administra los niveles de inventarios de manera eficiente. Ingresa el material, la cantidad disponible y obtén alertas cuando sea necesario hacer un pedido.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Cantidad Disponible</th>
+          <th>Alerta de Pedido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tornillos M5</td>
+          <td>500</td>
+          <td><span class="alerta-verde">No requiere pedido</span></td>
+        </tr>
+        <tr>
+          <td>Telas de algodón</td>
+          <td>200</td>
+          <td><span class="alerta-roja">Requiere pedido</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p>Registra y visualiza la demanda de materiales a lo largo del año para optimizar la planificación.</p>
+  <canvas id="grafica-demanda"></canvas>
+  <table>
+    <thead>
+      <tr>
+        <th>Mes</th>
+        <th>Demandada de Materiales</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Enero</td>
+        <td>1000</td>
+      </tr>
+      <tr>
+        <td>Febrero</td>
+        <td>1200</td>
+      </tr>
+      <tr>
+        <td>Marzo</td>
+        <td>1500</td>
+      </tr>
+      <tr>
+        <td>Abril</td>
+        <td>1800</td>
+      </tr>
+      <tr>
+        <td>Mayo</td>
+        <td>2000</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<script>
+  // Obtén el elemento canvas
+  const graficaDemanda = document.getElementById('grafica-demanda').getContext('2d');
+
+  // Define los datos para la gráfica
+  const datosDemanda = {
+    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
+    datasets: [{
+      label: 'Demanda de Materiales',
+      data: [1000, 1200, 1500, 1800, 2000],
+      backgroundColor: 'rgba(255, 99, 132, 0.2)',
+      borderColor: 'rgba(255, 99, 132, 1)',
+      borderWidth: 1
+    }]
+  };
+
+  // Crea la gráfica
+  const graficaDemandaChart = new Chart(graficaDemanda, {
+    type: 'bar',
+    data: datosDemanda,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<footer>
+  <p> 2024 Just in Time. Todos los derechos reservados.</p>
+</footer>
